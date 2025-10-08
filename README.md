@@ -2,7 +2,11 @@
 
 O# (O5006)
 
-This basic research code is a Python-implementation of the Hunter-Preston strength model, but with generalized drag coefficient B. For details, see D. N. Blaschke, A. Hunter, and D. L. Preston, “Analytic model of the remobilization of pinned glide dislocations: including dislocation drag from phonon wind”, Int. J. Plast. 131 (2020) 102750, arXiv:1912.08851 [cond-mat.mtrl-sci]. This code was used to generate most of the figures in this paper.
+This basic research code is a Python-implementation of the Hunter-Preston strength model, but with generalized drag coefficient B.
+For details, see D. N. Blaschke, A. Hunter, and D. L. Preston, “Analytic model of the remobilization of pinned glide dislocations: including dislocation drag from phonon wind”, [Int. J. Plast. 131 (2020) 102750](https://doi.org/10.1016/j.ijplas.2020.102750), [arXiv:1912.08851 [cond-mat.mtrl-sci]](https://arxiv.org/abs/1912.08851).
+This code was used to generate most of the figures in this paper.
+</br>
+In particular, the code is used to study the effect of a non-constant dislocation drag coefficient on the very high strain rate regime within an analytic model describing mobile-immobile dislocation intersections applicable to polycrystals.
  
  © 2025. Triad National Security, LLC. All rights reserved.
 
