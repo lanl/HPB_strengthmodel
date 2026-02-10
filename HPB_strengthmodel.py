@@ -38,15 +38,12 @@ ct = {'Ag': 1699, 'Al':3109, 'Au': 1183, 'Cu':2322, 'Ni': 2922}
 burgers_rt = {'Ag':2.889e-10, 'Al':2.863e-10, 'Au':2.884e-10,'Cu':2.556e-10, 'Ni':2.492e-10}
 rho_rt = {'Ag': 10500, 'Al':2700, 'Au': 19300, 'Cu':8960, 'Ni':8900}
 #############################
-Bchoice = 'full'
-# showinset = True
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('-hide_inset', '--hide_inset', action='store_true')
-parser.add_argument('-Bchoice','--Bchoice',type=str)
+parser.add_argument('-Bchoice','--Bchoice',default='full',type=str)
 parser.add_argument('-metal','--metal',type=str,default='Al, Cu',help=f"metal / list of metals to plot. default: 'Al, Cu'; available metals: {sorted(list(ct.keys()))}")
 args = parser.parse_args()
-if args.Bchoice is not None:
-    Bchoice = args.Bchoice
+Bchoice = args.Bchoice
 showinset = not args.hide_inset
 
 ## values of physical constants taken from CRC handbook:
@@ -222,11 +219,11 @@ elif Bchoice == 'full':
         B0[X] = round((B(300,X,0,burgers_rt[X],rho_rt[X])+3*Bmin[X])/4,7)
         ## code below determines Boffset[X], which is used as B0 in Bchoice=linear
         burg = burgers_rt[X]
-        ### compute what stress is needed to move dislocations at velocity v:
         def sigma_eff(v):
+            '''compute what stress is needed to move dislocations at velocity v'''
             return v*Bvel(v,c_t,300,params['edge'],params['screw'])/burg
-        ## B as a straight line:
         def Bstraight(sigma,Boffset=0):
+            '''approximate B as a straight line'''
             return Boffset+sigma*burg/c_t
         sigma_max = min(1.5e9,float(sigma_eff(0.99*c_t)))
         Boffset[X] = round(float(B(300,X,sigma_max,burg,rho_rt[X])-Bstraight(sigma_max,0)),7)
